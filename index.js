@@ -41,10 +41,14 @@ app.models = {
             /:id (DELETE) <- delete child
 
     /transactions
-        - /register (create transaction for parent approval) (POST)
+        - /parent/:id (GET) <- get all transactions using parent's ID
+        - /child/:id (GET) <- get all transactions using child's ID
+        - /start (start a transaction for parent approval) (POST)
+        - /:id (GET) <- get transaction details by id
+        - /:id (PUT) <- update transaction info (might be useful later on)
+        - /:id (DELETE) <- delete transaction (might be useful later on)
         - /approve/:id (approve transaction, update to approved) (PUT)
-        - /deny/:id (decline transaction, delete request) (PUT)
-
+        - /deny/:id (decline transaction, delete request) (PUT) 
     
     Needed middlewares:
         check id exist
