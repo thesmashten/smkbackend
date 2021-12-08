@@ -8,9 +8,9 @@ let Kid = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     fireID: {type: String, required: true, index: {unique: true}},
     code: {type: String, required: true, index: {unique: true}},
-    save: {type: Number, default: 0},
-    spend: {type: Number, default: 0},
-    share: {type: Number, default: 0},
+    saveBank: {type: Number, default: 0},
+    spendBank: {type: Number, default: 0},
+    shareBank: {type: Number, default: 0},
     transactions: {type: [Transaction]},
     goals: {type: [Goal]},
 })

@@ -6,7 +6,7 @@ const express = require("express"),
     app = express(),
     PORT = (process.env.port || 4000),
     conf = {
-        mongo: "fakeurlformongoose.com" // need dev url vs real url
+        mongo: "mongodb://localhost:27017/smk" // need dev url vs real url
     }
 
 app.use(express.static("public"));
