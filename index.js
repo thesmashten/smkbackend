@@ -4,18 +4,14 @@ const express = require("express"),
     joi = require("joi"),
     mongoose = require("mongoose"),
     app = express(),
-    PORT = (process.env.port || 4000),
+    PORT = (process.env.port || 3000),
     conf = {
         mongo: "mongodb://localhost:27017/smk" // need dev url vs real url
     }
 
 app.use(express.static("public"));
 app.use(express.json());
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', '*');
-    res.append('Access-Control-Allow-Headers', '*');
-    res.append('Access-Control-Allow-Methods', '*');
-})
+
 
 app.models = {
     Parent: require("./models/Parent"),

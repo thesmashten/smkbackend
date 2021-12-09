@@ -1,6 +1,7 @@
 const Parent = require("../models/Parent");
 
 
+
 const createParent = async (req, res) => {
     let input = req.body
 
@@ -64,7 +65,6 @@ const deleteParent = async(req, res) =>{
     } catch (error) {
         res.status(500).send(error);
     }
-     
 }
 
 
