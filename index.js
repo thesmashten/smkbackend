@@ -26,12 +26,13 @@ app.models = {
 /api
     /users
         /parent
-            /register (POST)
+            /register (POST)        
             /login  (POST)
             / (GET) <- get all parents
             /:id (GET) <- get parent by id
             /:id (PUT) <- update parent info
             /:id (DELETE) <- delete parent
+            /addkid/:id (post) <-link kid with parent using code
         /kid
             /register (POST)
             /login  (POST)
@@ -57,7 +58,6 @@ app.models = {
         transactionPerms (check if transaction belongs to the parent's kid)
 
 */
-// IMPORTANT: NEED FIREID
 
 app.use("/api", router);
 app.listen(PORT, async () => {
