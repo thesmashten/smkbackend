@@ -10,7 +10,7 @@ const createParent = async (req, res) => {
     })
 
     try {
-        const parent = newParent.save()
+        const parent = await newParent.save()
         res.status(200).send(parent);
     }
     catch (err) {
@@ -64,8 +64,7 @@ const deleteParent = async(req, res) =>{
     } catch (error) {
         res.status(500).send(error);
     }
-    
-    
+     
 }
 
 

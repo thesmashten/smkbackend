@@ -1,9 +1,11 @@
 const express = require('express');
-const { userRouter } = require('./users.router');
+const { parentRouter } = require('./parent.router');
+const { childRouter } = require('./child.router');
 
 const router = express.Router();
 
-router.use("/users", userRouter)
+router.use("/parents", parentRouter);
+router.use("/children", childRouter);
 
 module.exports = {
     router

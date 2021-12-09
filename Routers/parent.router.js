@@ -1,10 +1,8 @@
 const express = require('express');
 const { getAllParents, getParentById, createParent, updateParent, deleteParent } = require('../Controllers/parent.controller');
 const parentRouter = express.Router();
-parentRouter.use(express.json())
+parentRouter.use(express.json());
 
-
-// TODO: CRUD -> Creation requires fireID to be done. 
 
 // get all parents (mostly useful for testing and admin work)
 parentRouter.get("/", getAllParents);
@@ -19,8 +17,6 @@ parentRouter.get("/:id", getParentById)
 parentRouter.put("/:id", updateParent);
 // delete parent (will be gone forever)   *Paranoid collections?*
 parentRouter.delete("/:id", deleteParent);
-
-
 
 module.exports = {
     parentRouter
