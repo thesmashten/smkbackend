@@ -1,7 +1,8 @@
 const express = require('express');
 const { getAllChildren, getChildById, createChild, updateChild, deleteChild } = require('../Controllers/child.controller');
+const { startTransaction } = require('../Controllers/transaction.controller');
 const childRouter = express.Router();
-parentRouter.use(express.json());
+childRouter.use(express.json());
 
 // get all children (mostly useful for testing and admin work)
 childRouter.get("/", getAllChildren);
@@ -15,6 +16,9 @@ childRouter.get("/:id", getChildById)
 childRouter.put("/:id", updateChild);
 // delete child (will be gone forever)
 childRouter.delete("/:id", deleteChild);
+
+
+childRouter.post('/transaction/:id', startTransaction);
 
 
 module.exports = {
