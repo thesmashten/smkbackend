@@ -43,6 +43,21 @@ const getParentById = async (req, res) => {
     }
 }
 
+const getParentByFireId = async (req, res) => {
+    const { fireID } = req.params;
+    try {
+        const parent = await Parent.find({fireID});
+        if (parent){
+            res.status(200).send(parent);
+        }else{
+            res.staus(404).send("parent not found");
+        }
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+}
+
 const updateParent = async(req, res) =>{
     const {id} = req.params;
     const input = req.body;
@@ -73,5 +88,6 @@ module.exports = {
     getParentById,
     getAllParents,
     updateParent,
-    deleteParent
+    deleteParent,
+    getParentByFireId
 }

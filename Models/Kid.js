@@ -11,7 +11,7 @@ let Kid = new Schema({
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },
     shareBank: { type: Number, default: 0 },
-    transactions: { type: [Transaction] },
+    transactions: { type: [Transaction] , default:[]},
     goals: { type: [Goal] },
 })
 

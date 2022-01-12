@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllParents, getParentById, createParent, updateParent, deleteParent } = require('../Controllers/parent.controller');
+const { getAllParents, getParentById, createParent, updateParent, deleteParent, getParentByFireId } = require('../Controllers/parent.controller');
 const parentRouter = express.Router();
 parentRouter.use(express.json());
 
@@ -13,6 +13,9 @@ parentRouter.post("/", createParent)
 // TODO: middle ware to check if collection contain parent with the passed in ID.
 // get parent by id
 parentRouter.get("/:id", getParentById)
+// get parent by fireID
+parentRouter.get("/fire/:fireID", getParentByFireId)
+
 // update parent info
 parentRouter.put("/:id", updateParent);
 // delete parent (will be gone forever)   *Paranoid collections?*

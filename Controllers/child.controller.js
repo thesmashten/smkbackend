@@ -39,6 +39,21 @@ const getChildById = async (req, res) => {
     }
 }
 
+const getChildByFireId = async(req, res) =>{
+    const {fireID} = req.params;
+    try {
+        const child = await Child.find({fireID});
+        if (child){
+            res.status(200).send(child);
+        } else {
+            res.staus(404).send("child not found");
+        }
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
+}
+
 const updateChild = async(req, res) =>{
     const {id} = req.params;
     const input = req.body;
@@ -68,5 +83,6 @@ module.exports = {
     getChildById,
     getAllChildren,
     updateChild,
-    deleteChild
+    deleteChild,
+    getChildByFireId
 }
