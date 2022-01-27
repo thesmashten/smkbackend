@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllParents, getParentById, createParent, updateParent, deleteParent, getParentByFireId } = require('../Controllers/parent.controller');
+const { getAllParents, getParentById, createParent, updateParent, deleteParent, getParentByFireId, addChild } = require('../Controllers/parent.controller');
 const parentRouter = express.Router();
 parentRouter.use(express.json());
 
@@ -9,6 +9,8 @@ parentRouter.get("/", getAllParents);
 
 // creates new parent
 parentRouter.post("/", createParent)
+// adds child to parent's child array
+parentRouter.put("/:fireID/addChild", addChild);
 
 // TODO: middle ware to check if collection contain parent with the passed in ID.
 // get parent by id

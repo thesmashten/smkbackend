@@ -64,7 +64,7 @@ const approveTransaction = async (req, res) => {
                 kid.spendBank += transaction.value;
             }
             case 'SHARE':{
-                kid.spendBank += transaction.value;
+                kid.shareBank += transaction.value;
             }
         }
         kid.save();
