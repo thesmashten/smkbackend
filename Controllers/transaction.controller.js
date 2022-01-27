@@ -40,9 +40,9 @@ const getStartedTransactionByChild = async (req, res) => {
 
 const getTransactionById = async (req, res) => {
     try {
-        const { transactionId} = req.params;
+        const { transactionId } = req.params;
 
-        const kid = await Kid.findOne({'transactions._id':transactionId});
+        const kid = await Kid.findOne({ 'transactions._id': transactionId });
         res.status(200).send({ username: kid.username, data: kid.transactions.id(transactionId) })
     } catch (error) {
         console.log(error)
@@ -50,8 +50,33 @@ const getTransactionById = async (req, res) => {
     }
 }
 
+const approveTransaction = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const kid = await Kid.findOne({ 'transactions._id': id });
+        const transaction = kid.transactions.find((transaction) => transaction._id == id);
+        switch(category){
+            case 'SAVE':{
+                kid.saveBank += transaction.value;
+            }
+            case 'SPEND':{
+                kid.spendBank += transaction.value;
+            }
+            case 'SHARE':{
+                kid.spendBank += transaction.value;
+            }
+        }
+        kid.save();
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error)
+    }
+}
+
 module.exports = {
     startTransaction,
     getStartedTransactionByChild,
-    getTransactionById
+    getTransactionById,
+    approveTransaction
 }

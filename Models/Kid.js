@@ -15,4 +15,4 @@ let Kid = new Schema({
     goals: { type: [Goal] },
 })
 
-module.exports = mongoose.models.Kid || mongoose.model("Kid", Kid);
+module.exports = mongoose.models.Kid || mongoose.model("Kid", Kid);con
