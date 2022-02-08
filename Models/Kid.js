@@ -11,8 +11,8 @@ let Kid = new Schema({
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },
     shareBank: { type: Number, default: 0 },
-    transactions: { type: [Transaction] , default:[]},
+    transactions: { type: [Transaction], default: [] },
     goals: { type: [Goal] },
 })
 
-module.exports = mongoose.models.Kid || mongoose.model("Kid", Kid);con
+module.exports = mongoose.models.Kid || mongoose.model("Kid", Kid);     
