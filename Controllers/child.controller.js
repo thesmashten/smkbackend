@@ -1,4 +1,4 @@
-const Child = require("../models/Kid");
+const Child = require("../modelssef/Kid.js");
 
 const createChild = async (req, res) => {
     let input = req.body;

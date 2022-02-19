@@ -1,5 +1,5 @@
-const Parent = require("../models/Parent");
-const Child = require('../models/Kid')
+const Parent = require("../modelssef/Parent");
+const Child = require('../modelssef/Kid')
 
 
 
