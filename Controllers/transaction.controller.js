@@ -1,5 +1,4 @@
-const Kid = require('../Models/Kid');
-const Transaction = require('../Models/Transaction');
+const Child = require('../models/Kid');
 
 
 const startTransaction = async (req, res) => {
@@ -55,19 +54,32 @@ const approveTransaction = async (req, res) => {
         const { id } = req.params;
 
         const kid = await Kid.findOne({ 'transactions._id': id });
-        const transaction = kid.transactions.find((transaction) => transaction._id == id);
-        switch(category){
-            case 'SAVE':{
-                kid.saveBank += transaction.value;
+        const transaction = kid.transactions.find((trans) => {
+
+            return trans._id.toString() == id;
+        });
+        if (transaction.status) {
+            res.status(400).send("transaction already approved");
+        } else {
+            switch (transaction.category) {
+                case 'SAVE': {
+                    kid.saveBank += transaction.value;
+                    break;
+                }
+                case 'SPEND': {
+                    kid.spendBank += transaction.value;
+                    break;
+                }
+                case 'SHARE': {
+                    kid.shareBank += transaction.value;
+                    break;
+                }
             }
-            case 'SPEND':{
-                kid.spendBank += transaction.value;
-            }
-            case 'SHARE':{
-                kid.shareBank += transaction.value;
-            }
+            transaction.status = true;
+            kid.save();
+            res.status(200).send(transaction);
         }
-        kid.save();
+
     } catch (error) {
         console.log(error);
         res.status(500).send(error)

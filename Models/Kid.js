@@ -10,7 +10,7 @@ let Kid = new Schema({
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },
     shareBank: { type: Number, default: 0 },
-    transactions: { type: [Transaction] , default:[]},
+    transactions: { type: [Transaction], default: [] },
     goals: { type: [Goal] },
     activated: { type: Boolean, default: false},
     linkcode: { type: String, required: true }

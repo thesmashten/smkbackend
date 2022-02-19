@@ -10,7 +10,7 @@ parentRouter.get("/", getAllParents);
 // creates new parent
 parentRouter.post("/", createParent)
 // adds child to parent's child array
-parentRouter.put("/:fireID/addChild", addChild);
+parentRouter.put("/addChild/:fireID", addChild);
 
 // TODO: middle ware to check if collection contain parent with the passed in ID.
 // get parent by id

@@ -45,7 +45,7 @@ const getChildById = async (req, res) => {
 const getChildByFireId = async(req, res) =>{
     const {fireID} = req.params;
     try {
-        const child = await Child.find({fireID});
+        const child = await Child.findOne({fireID});
         if (child){
             res.status(200).send(child);
         } else {
