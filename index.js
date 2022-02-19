@@ -4,7 +4,7 @@ const express = require("express"),
     joi = require("joi"),
     mongoose = require("mongoose"),
     app = express(),
-    PORT = (process.env.port || 3000),
+    PORT = (process.env.PORT || 3000),
     conf = {
         mongo: "mongodb+srv://changeplusplus:QmkqG8EwIKnfIGBL@supermoneykids.h98fu.mongodb.net/smk?retryWrites=true&w=majority" // need dev url vs real url
     }
