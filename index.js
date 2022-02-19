@@ -13,10 +13,10 @@ app.use(express.static("public"));
 app.use(express.json());
 
 
-app.models = {
-    Parent: require("./models/Parent"),
-    Kid: require("./models/Kid")
-}
+// app.models = {
+//     Parent: require("./models/Parent"),
+//     Kid: require("./models/Kid")
+// }
 
 /* PLANNING:
 /api
