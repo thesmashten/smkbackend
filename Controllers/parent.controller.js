@@ -84,12 +84,18 @@ const deleteParent = async(req, res) =>{
 
 const addChild = async(req, res) => {
     const id = req.params;
-    const {childId} = req.body;
+    const {linkcode} = req.body;
+    
     try {
         const starterParent = await Parent.findById(id);
-        const nextArray = starterParent.kids.append(childId);
-        const updatedParent = await Parent.findByIdAndUpdate(id, {kids: nextArray}).exec();
-        res.status(200).send({message: "child appended", updatedParent});
+        const kidToAdd = await Child.findOne({"linkcode": linkcode});
+        if (kidToAdd) {
+            const nextArray = starterParent.kids.append(kidToAdd.fireID);
+            const updatedParent = await Parent.findByIdAndUpdate(id, {kids: nextArray}).exec();
+            res.status(200).send({message: "child appended", updatedParent});
+        } else {
+            res.status(500).send("Invalid linkcode.");
+        }
     } catch (error) {
         res.status(500).send(error);
     }

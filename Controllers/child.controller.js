@@ -1,10 +1,13 @@
 const Child = require("../Models/Kid");
+const codeCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const createChild = async (req, res) => {
     let input = req.body;
+    let linkcode = validateLinkCode();
 
     const newChild = new Child({
         ...input,
+        linkcode
     });
 
     try {
@@ -78,6 +81,25 @@ const deleteChild = async(req, res) =>{
     }
 }
 
+function generateLinkCode() {
+    let newCode = "";
+    for(let i = 0; i < 5; i++) {
+        let index = Math.floor(Math.random() * 36);
+        newCode += codeCharacters[index];
+    }
+    return newCode;
+}
+
+async function validateLinkCode() {
+    let workingCode = false;
+    while(!workingCode) {
+        let newCode = generateLinkCode();
+        let matchResult = await Child.findOne({"linkcode": newCode});
+        if(!matchResult) {
+            return newCode;
+        }
+    }
+}
 module.exports = {
     createChild,
     getChildById,
