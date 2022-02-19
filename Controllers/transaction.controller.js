@@ -1,4 +1,4 @@
-const Kid = require('../Models/Kid');
+const Kid = require('../models/Kid');
 
 
 const startTransaction = async (req, res) => {

@@ -1,4 +1,4 @@
-const Child = require("../Models/Kid");
+const Child = require("../models/Kid");
 
 const createChild = async (req, res) => {
     let input = req.body;
