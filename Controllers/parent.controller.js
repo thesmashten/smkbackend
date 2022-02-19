@@ -88,7 +88,7 @@ const addChild = async (req, res) => {
     const { childId } = req.body;
     try {
         const starterParent = await Parent.findOne({ fireID });
-        const child = await Child.findOne({ code: childId });
+        const child = await Child.findOne({ linkcode: childId });
         if (child) {
             if (!starterParent.kids.includes(child.fireId)) {
                 starterParent.kids.push(child.fireID);
