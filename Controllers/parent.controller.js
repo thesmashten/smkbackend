@@ -92,8 +92,9 @@ const addChild = async (req, res) => {
         if (child) {
             if (!starterParent.kids.includes(child.fireId)) {
                 starterParent.kids.push(child.fireID);
+            } else {
+                res.status(400).send("Child already added");
             }
-            res.status(400).send("Child already added");
         } else {
             res.status(404).send("no child found with matching child ID")
         }
