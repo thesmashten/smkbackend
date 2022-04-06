@@ -2,7 +2,7 @@ const Kid = require('../models/Kid.js');
 
 
 const startTransaction = async (req, res) => {
-
+    // include id in the final creation?
     try {
         const { fireID } = req.params;
         const { message, category, value } = req.body;
