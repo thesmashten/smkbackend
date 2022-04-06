@@ -3,7 +3,7 @@ const codeCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const createChild = async (req, res) => {
     let input = req.body;
-    let linkcode = validateLinkCode();
+    let linkcode = await validateLinkCode();
 
     const newChild = new Child({
         ...input,
@@ -31,7 +31,7 @@ const getChildById = async (req, res) => {
     const { id } = req.params;
     try {
         const child = await Child.findById(id);
-        if (child){
+        if (child) {
             res.status(200).send(child);
         } else {
             res.staus(404).send("child not found");
@@ -42,11 +42,11 @@ const getChildById = async (req, res) => {
     }
 }
 
-const getChildByFireId = async(req, res) =>{
-    const {fireID} = req.params;
+const getChildByFireId = async (req, res) => {
+    const { fireID } = req.params;
     try {
-        const child = await Child.findOne({fireID});
-        if (child){
+        const child = await Child.findOne({ fireID });
+        if (child) {
             res.status(200).send(child);
         } else {
             res.staus(404).send("child not found");
@@ -57,24 +57,24 @@ const getChildByFireId = async(req, res) =>{
     }
 }
 
-const updateChild = async(req, res) =>{
-    const {id} = req.params;
+const updateChild = async (req, res) => {
+    const { id } = req.params;
     const input = req.body;
     try {
-        const updatedChild = await Child.findByIdAndUpdate(id, {...input}).exec();
-        res.status(200).send({message: "update sucessful", updatedChild})
+        const updatedChild = await Child.findByIdAndUpdate(id, { ...input }).exec();
+        res.status(200).send({ message: "update sucessful", updatedChild })
     } catch (err) {
         res.status(500).send(err)
     }
 }
 
-const deleteChild = async(req, res) =>{
-    const {id} = req.params;
-    const byId = {_id: id};
+const deleteChild = async (req, res) => {
+    const { id } = req.params;
+    const byId = { _id: id };
     try {
         const deletedChild = await Child.findOne(byId);
         await Child.deleteOne(byId);
-        res.status(200).send({message: "delete sucessful", deletedChild})
+        res.status(200).send({ message: "delete sucessful", deletedChild })
 
     } catch (err) {
         res.status(500).send(err);
@@ -83,7 +83,7 @@ const deleteChild = async(req, res) =>{
 
 function generateLinkCode() {
     let newCode = "";
-    for(let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         let index = Math.floor(Math.random() * 36);
         newCode += codeCharacters[index];
     }
@@ -92,10 +92,10 @@ function generateLinkCode() {
 
 async function validateLinkCode() {
     let workingCode = false;
-    while(!workingCode) {
+    while (!workingCode) {
         let newCode = generateLinkCode();
-        let matchResult = await Child.findOne({"linkcode": newCode});
-        if(!matchResult) {
+        let matchResult = await Child.findOne({ "linkcode": newCode });
+        if (!matchResult) {
             return newCode;
         }
     }
