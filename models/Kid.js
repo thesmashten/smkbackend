@@ -6,6 +6,7 @@ const mongoose = require("mongoose"),
 let Kid = new Schema({
     username: { type: String, required: true, index: { unique: true } },
     fireID: { type: String, required: true, index: { unique: true } },
+    // name and birth date.
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },
     shareBank: { type: Number, default: 0 },
