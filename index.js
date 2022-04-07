@@ -9,10 +9,21 @@ const express = require("express"),
     conf = {
         mongo: "mongodb+srv://changeplusplus:QmkqG8EwIKnfIGBL@supermoneykids.h98fu.mongodb.net/smk?retryWrites=true&w=majority" // need dev url vs real url
     }
-
+const cors = require("cors");
 app.use(express.static("public"));
 app.use(express.json());
-
+const whitelist = ["http://localhost:19006"]
+const corsOptions = {
+    origin: function (origin, callback) {
+        if (!origin || whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error("Not allowed by CORS"))
+        }
+    },
+    credentials: true,
+}
+app.use(cors(corsOptions))
 
 // app.models = {
 //     Parent: require("./models/Parent"),
