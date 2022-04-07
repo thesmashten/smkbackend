@@ -14,6 +14,8 @@ const createChild = async (req, res) => {
         const child = await newChild.save();
         res.status(200).send(child);
     } catch (err) {
+
+        console.log(err);
         res.status(500).send(err);
     }
 }
