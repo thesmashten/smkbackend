@@ -7,12 +7,15 @@ let Kid = new Schema({
     username: { type: String, required: true, index: { unique: true } },
     fireID: { type: String, required: true, index: { unique: true } },
     // name and birth date.
+    firstName: { type: String, required: true, index: { unique: true } },
+    lastName: { type: String, required: true, index: { unique: true } },
+    birthDate: { type: Date, default: new Date() },
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },
     shareBank: { type: Number, default: 0 },
     transactions: { type: [Transaction], default: [] },
     goals: { type: [Goal] },
-    activated: { type: Boolean, default: false},
+    activated: { type: Boolean, default: false },
     linkcode: { type: String, required: true }
 })
 
