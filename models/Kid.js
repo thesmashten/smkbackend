@@ -7,8 +7,8 @@ let Kid = new Schema({
     username: { type: String, required: true, index: { unique: true } },
     fireID: { type: String, required: true, index: { unique: true } },
     // name and birth date.
-    firstName: { type: String, required: true, index: { unique: true } },
-    lastName: { type: String, required: true, index: { unique: true } },
+    firstName: { type: String, required: true, index: { unique: false } },
+    lastName: { type: String, required: true, index: { unique: false } },
     birthDate: { type: Date, default: new Date() },
     saveBank: { type: Number, default: 0 },
     spendBank: { type: Number, default: 0 },

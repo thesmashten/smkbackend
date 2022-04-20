@@ -10,11 +10,11 @@ const createChild = async (req, res) => {
         ...input,
         linkcode
     });
-    createTracker(input.fireID);
-
+    const newTracker = await createTracker(input.fireID);
     try {
         const child = await newChild.save();
-        res.status(200).send(child);
+        const tracker = await newTracker.save();
+        res.status(200).send({child, tracker});
     } catch (err) {
 
         console.log(err);
