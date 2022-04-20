@@ -14,4 +14,4 @@ let Tracker = new Schema({
 // checkThreeGoals()
 // checkFirstDeposit()...
 //
-module.exports = mongoose.model("Tracker", Parent);
+module.exports = mongoose.model("Tracker", Tracker);
