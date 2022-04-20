@@ -1,4 +1,5 @@
 const Child = require("../models/Kid.js");
+const { createTracker } = require("./tracker.controller.js");
 const codeCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const createChild = async (req, res) => {
@@ -9,6 +10,7 @@ const createChild = async (req, res) => {
         ...input,
         linkcode
     });
+    createTracker(input.fireID);
 
     try {
         const child = await newChild.save();
